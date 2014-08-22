@@ -2,10 +2,12 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', [])
-  .controller('MyCtrl1', ['$scope', function($scope) {
+var app = angular.module('myApp.controllers', []);
 
-  }])
-  .controller('MyCtrl2', ['$scope', function($scope) {
+app.controller('MyCtrl1', ['$scope', 'User', function ($scope, User) {
+    $scope.users = User.query();
+}]);
 
-  }]);
+app.controller('MyCtrl2', ['$scope', function ($scope) {
+
+}]);

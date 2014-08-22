@@ -1,3 +1,5 @@
+import app.User
+
 class BootStrap {
     def testMongoService
 
@@ -5,7 +7,7 @@ class BootStrap {
       //  testMongoService.addSomeData()
         testMongoService.getSomeData()
 
-
+        new User(email: 'jake.coffman+winningapp@gmail.com').save()
     }
     def destroy = {
     }
