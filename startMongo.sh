@@ -1,1 +1,2 @@
-mongod --dbpath data\db
+mongod --dbpath ./data/db/
+
