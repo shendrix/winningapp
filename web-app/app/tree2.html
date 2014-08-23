@@ -44,8 +44,6 @@
                             <dd>
                                 <input type="text" ng-model="branch.label" class="form-control">
                             </dd>
-                            <dt>Id</dt>
-                            <dd>{{branch.id}}</dd>
                             <dt>Level</dt>
                             <dd>{{branch.level}}</dd>
                             <dt>Children</dt>
@@ -91,24 +89,19 @@
                 children: [
                     {
                         label: 'A',
-                        id: 'A',
                         children: [
                             {
-                                label: 'A++',
-                                id: 'Aplusplus'
+                                label: 'A++'
                             }
                         ]
                     },
                     {
-                        label: 'B',
-                        id: 'B'
+                        label: 'B'
                     },
                     {
-                        label: 'C',
-                        id: 'C'
+                        label: 'C'
                     }
-                ],
-                id: "langs"
+                ]
             }
         ];
 
@@ -116,7 +109,7 @@
             $scope.branch = branch;
             $scope.siblings = angular.copy(gatherSiblings());
             for (var i = 0; i < $scope.siblings.length; i++) {
-                if ($scope.siblings[i].id == $scope.branch.id) {
+                if ($scope.siblings[i].uid == $scope.branch.uid) {
                     $scope.siblings.splice(i, 1);
                     break;
                 }
@@ -128,7 +121,7 @@
                 level = $scope.data;
             }
             for (var i = 0; i < level.length; i++) {
-                if (level[i].id == $scope.branch.id) {
+                if (level[i].uid == $scope.branch.uid) {
                     return level;
                 } else {
                     if (level[i].children) {
@@ -146,7 +139,7 @@
                 level = $scope.data;
             }
             for (var i = 0; i < level.length; i++) {
-                if (level[i].id == $scope.branch.id) {
+                if (level[i].uid == $scope.branch.uid) {
                     level.splice(i, 1);
                     return true;
                 } else {
@@ -155,7 +148,7 @@
                         if (worked) {
                             var copy = {
                                 label: $scope.branch.label,
-                                id: $scope.branch.id,
+                                id: $scope.branch.uid,
                                 children: $scope.branch.children,
                                 level: $scope.branch.level - 1
                             };
@@ -175,7 +168,7 @@
                 level = $scope.data;
             }
             for (var i = 0; i < level.length; i++) {
-                if (level[i].id == id) {
+                if (level[i].uid == id) {
                     level.splice(i, 1);
                     return true;
                 } else {
@@ -194,10 +187,10 @@
             }
             console.log("INSERTING", level);
             for (var i = 0; i < level.length; i++) {
-                if (level[i].id == id) {
+                if (level[i].uid == id) {
                     level[i].children.push({
                         label: data.label,
-                        id: data.id,
+                        id: data.uid,
                         children: data.children,
                         level: data.level + 1
                     });
@@ -212,9 +205,9 @@
         };
 
         $scope.moveDown = function () {
-            console.log("REMOVE:", $scope.branch.id);
-            remover(undefined, $scope.branch.id);
-            inserter(undefined, $scope.selectedSibling.id, $scope.branch);
+            console.log("REMOVE:", $scope.branch.uid);
+            remover(undefined, $scope.branch.uid);
+            inserter(undefined, $scope.selectedSibling.uid, $scope.branch);
             $scope.selectedSibling = null;
             $scope.branch = null;
         }
