@@ -32,7 +32,8 @@
 
 <style>
     .panel {
-        width: 100px;
+        min-width: 100px;
+        max-width: 500px;
     }
 
     #item1 {
@@ -52,29 +53,42 @@
         left: 100px;
         top: 250px;
     }
+
+    #info {
+        position: relative;
+        top: 500px;
+        left: 500px;
+        width: 200px;
+    }
 </style>
 
-<div class="panel panel-default" id="item1">
+<div class="item panel panel-default" id="item1">
     <div class="panel-heading">Item1</div>
     <div class="panel-body">
         Panel content 1
     </div>
 </div>
 
-<div class="panel panel-default" id="item2">
+<div class="item panel panel-default" id="item2">
     <div class="panel-heading">Item2</div>
     <div class="panel-body">
         Panel content 2
     </div>
 </div>
 
-<div class="panel panel-default" id="item3">
+<div class="item panel panel-default" id="item3">
     <div class="panel-heading">Item3</div>
     <div class="panel-body">
         Panel content 3
     </div>
 </div>
 
+<div class="panel panel-primary" id="info">
+    <div class="panel-heading">Info</div>
+    <div class="panel-body">
+        I'm going to put the connection information here.
+    </div>
+</div>
 
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>

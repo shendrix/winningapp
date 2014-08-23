@@ -15,4 +15,8 @@ jsPlumb.ready(function () {
     jsPlumb.makeTarget(bodies, {
         anchor: 'Continuous'
     });
+
+    jsPlumb.bind('click', function (connection, e) {
+        jsPlumb.detach(connection);
+    });
 });
