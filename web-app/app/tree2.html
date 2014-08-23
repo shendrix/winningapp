@@ -113,7 +113,13 @@
 
         $scope.my_handler = function (branch) {
             $scope.branch = branch;
-            $scope.siblings = gatherSiblings();
+            $scope.siblings = angular.copy(gatherSiblings());
+            for (var i = 0; i < $scope.siblings.length; i++) {
+                if ($scope.siblings[i].id == $scope.branch.id) {
+                    $scope.siblings.splice(i, 1);
+                    break;
+                }
+            }
         };
 
         var gatherSiblings = function (level) {
@@ -162,8 +168,8 @@
             return false;
         };
 
-        $scope.moveDown = function() {
-
+        $scope.moveDown = function () {
+            console.log("Moving down");
         }
     }
     ])
