@@ -1,16 +1,18 @@
 jsPlumb.ready(function () {
     jsPlumb.setContainer($("body"));
 
-    var items = $('.item');
+    var items = $('.panel');
     jsPlumb.draggable(items, {
-        containment: 'parent'
+        containment: 'parent',
+        handle: '.panel-heading'
     });
 
-    jsPlumb.makeSource(items, {
+    var bodies = items.find('.panel-body');
+    jsPlumb.makeSource(bodies, {
         connector: 'StateMachine'
     });
 
-    jsPlumb.makeTarget(items, {
+    jsPlumb.makeTarget(bodies, {
         anchor: 'Continuous'
     });
 });
