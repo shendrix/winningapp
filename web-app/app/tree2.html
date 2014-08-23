@@ -5,6 +5,7 @@
     <title></title>
     <script src="bower_components/angular/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css">
 </head>
 <body ng-app="myApp" ng-controller="MainCtl">
@@ -39,13 +40,28 @@
                     <div ng-show="branch">
                         <dl class="dl-horizontal">
                             <dt>Label</dt>
-                            <dd>{{branch.label}}</dd>
+                            <dd>
+                                <input type="text" ng-model="branch.label" class="form-control">
+                            </dd>
                             <dt>Id</dt>
                             <dd>{{branch.id}}</dd>
                             <dt>Level</dt>
                             <dd>{{branch.level}}</dd>
                             <dt>Children</dt>
                             <dd>{{branch.children.length}}</dd>
+                            <dt>Move Up</dt>
+                            <dd>
+                                <button class="btn btn-primary btn-xs" ng-click="moveUp(branch);">
+                                    <i class="fa fa-arrow-up"></i>
+                                </button>
+                            </dd>
+                            <dt>Move Down</dt>
+                            <dd>
+                                <select>
+                                    <option>Here</option>
+                                    <option>There</option>
+                                </select>
+                            </dd>
                         </dl>
                         <pre ng-show="debug">{{branch}}</pre>
                     </div>
