@@ -59,9 +59,8 @@
                             </dd>
                             <dt>Move Down</dt>
                             <dd>
-                                <select class="form-control">
-                                    <option>Here</option>
-                                    <option>There</option>
+                                <select class="form-control" ng-options="s.label for s in siblings"
+                                        ng-model="selectedSibling" ng-change="moveDown()">
                                 </select>
                             </dd>
                         </dl>
@@ -77,6 +76,9 @@
         </div>
     </div>
 </div>
+
+<pre ng-show="debug">Siblings:
+{{siblings|json}}</pre>
 
 <script>
     var app = angular.module('myApp', ['angularBootstrapNavTree']);
@@ -111,6 +113,25 @@
 
         $scope.my_handler = function (branch) {
             $scope.branch = branch;
+            $scope.siblings = gatherSiblings();
+        };
+
+        var gatherSiblings = function (level) {
+            if (level == undefined) {
+                level = $scope.data;
+            }
+            for (var i = 0; i < level.length; i++) {
+                if (level[i].id == $scope.branch.id) {
+                    return level;
+                } else {
+                    if (level[i].children) {
+                        var v = gatherSiblings(level[i].children);
+                        if (v != null) {
+                            return v;
+                        }
+                    }
+                }
+            }
         };
 
         $scope.moveUp = function (level) {
@@ -139,6 +160,10 @@
                 }
             }
             return false;
+        };
+
+        $scope.moveDown = function() {
+
         }
     }
     ])
