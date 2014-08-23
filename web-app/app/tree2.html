@@ -9,9 +9,51 @@
 </head>
 <body ng-app="myApp" ng-controller="MainCtl">
 
-<abn-tree
-        tree-id="1"
-        tree-data="data"></abn-tree>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tree</div>
+                <div class="panel-body">
+                    <abn-tree
+                            tree-id="1"
+                            tree-data="data"
+                            on-select="my_handler(branch)"
+                            ></abn-tree>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Selection</div>
+                <div class="panel-body">
+                    <div ng-hide="branch">Please select an item to the left</div>
+                    <div ng-show="branch">
+                        <dl class="dl-horizontal">
+                            <dt>Label</dt>
+                            <dd>{{branch.label}}</dd>
+                            <dt>Id</dt>
+                            <dd>{{branch.id}}</dd>
+                            <dt>Level</dt>
+                            <dd>{{branch.level}}</dd>
+                            <dt>Children</dt>
+                            <dd>{{branch.children.length}}</dd>
+                        </dl>
+                        <pre ng-show="debug">{{branch}}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
     var app = angular.module('myApp', ['angularBootstrapNavTree']);
@@ -23,7 +65,8 @@
                 children: [
                     {
                         label: 'A',
-                        id: 'A'
+                        id: 'A',
+                        children: ['A++']
                     },
                     {
                         label: 'B',
@@ -36,7 +79,11 @@
                 ],
                 id: "langs"
             }
-        ]
+        ];
+
+        $scope.my_handler = function (branch) {
+            $scope.branch = branch;
+        }
     }])
 </script>
 <script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
