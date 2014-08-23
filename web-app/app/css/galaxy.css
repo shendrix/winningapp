@@ -1,0 +1,72 @@
+.panel {
+	min-width: 200px;
+}
+
+.drop-hover {
+	border: red solid 5px;
+}
+
+.dragActive {
+	height: 20px;
+	width: 20px;
+	border-radius: 10px;
+	box-shadow: 0 0 19px #46a546;
+	-o-box-shadow: 0 0 19px #46a546;
+	-webkit-box-shadow: 0 0 19px #46a546;
+	-moz-box-shadow: 0 0 19px #46a546;
+}
+
+.draggy {
+	position: absolute;
+}
+
+.droppy {
+}
+
+.space {
+	width: 15px;
+}
+
+#area {
+	height: 800px;
+	background: #f4f8f4;
+}
+
+.selected {
+
+}
+
+.endpointSource {
+
+}
+
+.endpointTarget {
+
+}
+
+.connectorClass {
+
+}
+
+.panel-heading.ui-selecting {
+	background: #FECA40;
+}
+
+.details.panel-heading.ui-selecting {
+	background: #00ce00;
+}
+
+.panel-heading.ui-selected {
+	background: #F39814;
+	color: white;
+}
+
+.details.panel-heading.ui-selected {
+	background: green;
+}
+
+.ui-selectable-helper {
+	position: absolute;
+	z-index: 100;
+	border: 1px dotted black;
+}
