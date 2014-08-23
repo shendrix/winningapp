@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title></title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
@@ -51,21 +52,27 @@
                             <dd>{{branch.children.length}}</dd>
                             <dt>Move Up</dt>
                             <dd>
-                                <button class="btn btn-primary btn-xs" ng-click="moveUp(branch);">
+                                <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);"
+                                        ng-disabled="branch.level == 1">
                                     <i class="fa fa-arrow-up"></i>
                                 </button>
                             </dd>
                             <dt>Move Down</dt>
                             <dd>
-                                <select>
+                                <select class="form-control">
                                     <option>Here</option>
                                     <option>There</option>
                                 </select>
                             </dd>
                         </dl>
-                        <pre ng-show="debug">{{branch}}</pre>
+                        <pre ng-show="debug">{{branch|json}}</pre>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <pre ng-show="debug">{{data | json}}</pre>
             </div>
         </div>
     </div>
@@ -82,7 +89,12 @@
                     {
                         label: 'A',
                         id: 'A',
-                        children: ['A++']
+                        children: [
+                            {
+                                label: 'A++',
+                                id: 'Aplusplus'
+                            }
+                        ]
                     },
                     {
                         label: 'B',
@@ -99,8 +111,37 @@
 
         $scope.my_handler = function (branch) {
             $scope.branch = branch;
+        };
+
+        $scope.moveUp = function (level) {
+            if (level == undefined) {
+                level = $scope.data;
+            }
+            for (var i = 0; i < level.length; i++) {
+                if (level[i].id == $scope.branch.id) {
+                    level.splice(i, 1);
+                    return true;
+                } else {
+                    if (level[i].children) {
+                        var worked = $scope.moveUp(level[i].children);
+                        if (worked) {
+                            var copy = {
+                                label: $scope.branch.label,
+                                id: $scope.branch.id,
+                                children: $scope.branch.children,
+                                level: $scope.branch.level - 1
+                            };
+                            level.push(copy);
+                            $scope.branch = null;
+                            return false;
+                        }
+                    }
+                }
+            }
+            return false;
         }
-    }])
+    }
+    ])
 </script>
 <script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
 </body>
