@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>My AngularJS App</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="bower_components/jsPlumb/dist/css/jsplumb.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
+    <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+    <link rel="stylesheet" href="css/app.css"/>
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+<body ng-controller="MainCtl">
+
+<!--
+
+ Nodes have a title
+ Relationships are directional
+ Relationships have a title
+
+ -->
+
+<style>
+    .panel {
+        min-width: 100px;
+        max-width: 500px;
+    }
+
+    #item1 {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+    }
+
+    #item2 {
+        position: absolute;
+        left: 250px;
+        top: 100px;
+    }
+
+    #item3 {
+        position: absolute;
+        left: 100px;
+        top: 250px;
+    }
+
+    #info {
+        position: relative;
+        top: 500px;
+        left: 500px;
+        width: 200px;
+    }
+</style>
+
+<div class="item panel panel-default" id="item1">
+    <div class="panel-heading">Item1</div>
+    <div class="panel-body">
+        Panel content 1
+    </div>
+</div>
+
+<div class="item panel panel-default" id="item2">
+    <div class="panel-heading">Item2</div>
+    <div class="panel-body">
+        Panel content 2
+    </div>
+</div>
+
+<div class="item panel panel-default" id="item3">
+    <div class="panel-heading">Item3</div>
+    <div class="panel-body">
+        Panel content 3
+    </div>
+</div>
+
+<div class="panel panel-primary" id="info">
+    <div class="panel-heading">Connections</div>
+    <div class="panel-body">
+        {{connections}}
+    </div>
+</div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/jsPlumb/dist/js/jquery.jsPlumb-1.6.4-min.js"></script>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="js/plumb.js"></script>
+</body>
+</html>

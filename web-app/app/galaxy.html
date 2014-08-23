@@ -1,0 +1,89 @@
+<!doctype html>
+<html ng-app="mine" ng-controller="MainCtl">
+<head>
+    <link href="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.3/flatly/bootstrap.min.css" rel="stylesheet">-->
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.3/united/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="http://netdna.bootstrapcdn.com/bootswatch/3.0.3/spacelab/bootstrap.min.css" rel="stylesheet">-->
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/galaxy.css" rel="stylesheet">
+</head>
+<body>
+<ul class="nav nav-pills">
+    <li ng-repeat="t in tools"><a href="" ng-click="addTool(t)">{{t.name}}</a></li>
+</ul>
+
+<div id="area">
+    <div tool class="panel panel-primary draggy" style="left: {{t.left}}px; top: {{t.top}}px;"
+         ng-repeat="t in workspace track by $index" ng-click="select(t)" ng-class="{selected: selected == t}">
+        <div class="panel-heading handle" ng-class="{'ui-selected': selected == t}">{{t.name}}
+        <span class="pull-right">
+            <button class="btn btn-xs" ng-click="remove($index)">
+                <i class="fa fa-times"></i>
+            </button>
+        </span>
+        </div>
+        <div class="panel-body">
+            <div>
+                <div input class="droppy" ng-repeat="i in t.inputs">
+                    &nbsp;&nbsp;&nbsp; {{i.name}} ({{i.format}})
+                </div>
+            </div>
+            <hr ng-show="t.inputs.length > 0">
+            <div>
+                <div ng-repeat="o in t.outputs" output>
+                    {{o.name}} ({{o.format}}) &nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div draggable class="panel panel-default draggy" style="left: 700px; top: 200px">
+        <div class="panel-heading details">
+            <span ng-hide="selected">Details</span>
+            <span ng-show="selected">{{selected.name}}</span>
+        </div>
+        <div class="panel-body">
+            <div ng-hide="selected">
+                Click on a tool to view and configure details.
+            </div>
+            <div ng-show="selected">
+                <h3>Description</h3>
+
+                <p>{{selected.description}}</p>
+
+                <h3>Configuration</h3>
+
+                <div role="form">
+                    <div class="form-group" ng-repeat="c in selected.configuration">
+                        <label>{{c.description}}</label>
+                        <input type="text" class="form-control" ng-model="c.value">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-6">
+            <h2>Workspace</h2>
+            <pre>{{getWorkspace()}}</pre>
+        </div>
+        <div class="col-sm-6">
+            <h2>Connections</h2>
+            <pre>{{getConnections()}}</pre>
+        </div>
+    </div>
+</div>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/jsPlumb/dist/js/jquery.jsPlumb-1.6.4-min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="js/tools.js"></script>
+<script src="js/galaxy.js"></script>
+</body>
+</html>

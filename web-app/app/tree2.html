@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css">
+</head>
+<body ng-app="myApp" ng-controller="MainCtl">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xs-12">
+            <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
+        </div>
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Tree</div>
+                <div class="panel-body">
+                    <abn-tree
+                            tree-id="1"
+                            tree-data="data"
+                            on-select="my_handler(branch)"
+                            ></abn-tree>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6">
+            <div class="panel panel-default">
+                <div class="panel-heading">Selection</div>
+                <div class="panel-body">
+                    <div ng-hide="branch">Please select an item to the left</div>
+                    <div ng-show="branch">
+                        <dl class="dl-horizontal">
+                            <dt>Label</dt>
+                            <dd>
+                                <input type="text" ng-model="branch.label" class="form-control">
+                            </dd>
+                            <dt>Level</dt>
+                            <dd>{{branch.level}}</dd>
+                            <dt>Children</dt>
+                            <dd>{{branch.children.length}}</dd>
+                            <dt>Move Up</dt>
+                            <dd>
+                                <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);"
+                                        ng-disabled="branch.level == 1">
+                                    <i class="fa fa-arrow-up"></i>
+                                </button>
+                            </dd>
+                            <dt>Move Down</dt>
+                            <dd>
+                                <select class="form-control" ng-options="s.label for s in siblings"
+                                        ng-disabled="siblings.length == 0"
+                                        ng-model="selectedSibling" ng-change="moveDown()">
+                                </select>
+                            </dd>
+                        </dl>
+                        <pre ng-show="debug">{{branch|json}}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <pre ng-show="debug">{{data | json}}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<pre ng-show="debug">Siblings:
+{{siblings|json}}</pre>
+
+<script type="text/javascript" src="js/tree.js"></script>
+<script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
+</body>
+</html>
