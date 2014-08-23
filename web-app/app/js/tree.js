@@ -74,12 +74,15 @@ app.controller('MainCtl', ['$scope', function ($scope) {
         for (var i = 0; i < level.length; i++) {
             if (level[i].uid == $scope.branch.uid) {
                 level.splice(i, 1);
+                // if the selected branch is at this level, remove it, return true to indicate
+                // the branch needs to be added to the parent
                 return true;
             } else {
+                // couldn't find it, do depth first search (easier)
                 if ($scope.moveUp(level[i].children)) {
+                    // it was found the level below me, add it to this level
                     var copy = {
                         label: $scope.branch.label,
-                        id: $scope.branch.uid,
                         children: $scope.branch.children,
                         level: $scope.branch.level - 1
                     };
@@ -115,12 +118,10 @@ app.controller('MainCtl', ['$scope', function ($scope) {
         if (level == undefined) {
             level = $scope.data;
         }
-        console.log("INSERTING", level);
         for (var i = 0; i < level.length; i++) {
             if (level[i].uid == id) {
                 level[i].children.push({
                     label: data.label,
-                    id: data.uid,
                     children: data.children,
                     level: data.level + 1
                 });
@@ -136,6 +137,7 @@ app.controller('MainCtl', ['$scope', function ($scope) {
 
     $scope.moveDown = function () {
         console.log("REMOVE:", $scope.branch.uid);
+        // poor performance but simple impl
         remover(undefined, $scope.branch.uid);
         inserter(undefined, $scope.selectedSibling.uid, $scope.branch);
         $scope.selectedSibling = null;
