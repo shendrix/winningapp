@@ -58,6 +58,7 @@
                             <dt>Move Down</dt>
                             <dd>
                                 <select class="form-control" ng-options="s.label for s in siblings"
+                                        ng-disabled="siblings.length == 0"
                                         ng-model="selectedSibling" ng-change="moveDown()">
                                 </select>
                             </dd>
@@ -85,21 +86,35 @@
         $scope.selectedSibling = null;
         $scope.data = [
             {
-                label: 'Languages',
+                label: 'Animals',
                 children: [
                     {
-                        label: 'A',
+                        label: 'Mammals',
                         children: [
                             {
-                                label: 'A++'
+                                label: 'Human'
+                            },
+                            {
+                                label: "Manatee"
                             }
                         ]
                     },
                     {
-                        label: 'B'
+                        label: 'Insects'
                     },
                     {
-                        label: 'C'
+                        label: 'Kangaroo'
+                    }
+                ]
+            },
+            {
+                label: 'Fungi',
+                children: [
+                    {
+                        label: 'Toadstool'
+                    },
+                    {
+                        label: '1Up'
                     }
                 ]
             }
@@ -143,19 +158,16 @@
                     level.splice(i, 1);
                     return true;
                 } else {
-                    if (level[i].children) {
-                        var worked = $scope.moveUp(level[i].children);
-                        if (worked) {
-                            var copy = {
-                                label: $scope.branch.label,
-                                id: $scope.branch.uid,
-                                children: $scope.branch.children,
-                                level: $scope.branch.level - 1
-                            };
-                            level.push(copy);
-                            $scope.branch = null;
-                            return false;
-                        }
+                    if ($scope.moveUp(level[i].children)) {
+                        var copy = {
+                            label: $scope.branch.label,
+                            id: $scope.branch.uid,
+                            children: $scope.branch.children,
+                            level: $scope.branch.level - 1
+                        };
+                        level.push(copy);
+                        $scope.branch = null;
+                        return false;
                     }
                 }
             }
@@ -210,7 +222,23 @@
             inserter(undefined, $scope.selectedSibling.uid, $scope.branch);
             $scope.selectedSibling = null;
             $scope.branch = null;
-        }
+        };
+
+        var compare = function (a, b) {
+            if (a.label < b.label)
+                return -1;
+            if (a.label > b.label)
+                return 1;
+            return 0;
+        };
+
+        var sortAll = function (level) {
+            if (level == undefined) {
+                level = $scope.data;
+            }
+            level.sort(compare);
+            sortAll(level.children);
+        };
     }
     ])
 </script>
