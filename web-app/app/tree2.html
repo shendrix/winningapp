@@ -84,6 +84,7 @@
     var app = angular.module('myApp', ['angularBootstrapNavTree']);
 
     app.controller('MainCtl', ['$scope', function ($scope) {
+        $scope.selectedSibling = null;
         $scope.data = [
             {
                 label: 'Languages',
@@ -168,8 +169,54 @@
             return false;
         };
 
+        // removes a node from the tree based on ID
+        var remover = function (level, id) {
+            if (level == undefined) {
+                level = $scope.data;
+            }
+            for (var i = 0; i < level.length; i++) {
+                if (level[i].id == id) {
+                    level.splice(i, 1);
+                    return true;
+                } else {
+                    if (remover(level[i].children, id)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
+        // inserts a node as a child of the branch at ID with data
+        var inserter = function (level, id, data) {
+            if (level == undefined) {
+                level = $scope.data;
+            }
+            console.log("INSERTING", level);
+            for (var i = 0; i < level.length; i++) {
+                if (level[i].id == id) {
+                    level[i].children.push({
+                        label: data.label,
+                        id: data.id,
+                        children: data.children,
+                        level: data.level + 1
+                    });
+                    return true;
+                } else {
+                    if (inserter(level[i].children, id, data)) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        };
+
         $scope.moveDown = function () {
-            console.log("Moving down");
+            console.log("REMOVE:", $scope.branch.id);
+            remover(undefined, $scope.branch.id);
+            inserter(undefined, $scope.selectedSibling.id, $scope.branch);
+            $scope.selectedSibling = null;
+            $scope.branch = null;
         }
     }
     ])
