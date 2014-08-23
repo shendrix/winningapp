@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css">
+</head>
+<body ng-app="myApp" ng-controller="MainCtl">
+
+<abn-tree
+        tree-id="1"
+        tree-data="data"></abn-tree>
+
+<script>
+    var app = angular.module('myApp', ['angularBootstrapNavTree']);
+
+    app.controller('MainCtl', ['$scope', function ($scope) {
+        $scope.data = [
+            {
+                label: 'Languages',
+                children: [
+                    {
+                        label: 'A',
+                        id: 'A'
+                    },
+                    {
+                        label: 'B',
+                        id: 'B'
+                    },
+                    {
+                        label: 'C',
+                        id: 'C'
+                    }
+                ],
+                id: "langs"
+            }
+        ]
+    }])
+</script>
+<script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
+</body>
+</html>
