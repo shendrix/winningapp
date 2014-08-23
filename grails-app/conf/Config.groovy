@@ -115,3 +115,6 @@ log4j.main = {
            'org.hibernate',
            'net.sf.ehcache.hibernate'
 }
+
+
+app.sourceDataDir = "${System.properties['base.dir']}/data/ontologies"
