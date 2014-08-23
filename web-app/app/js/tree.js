@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['angularBootstrapNavTree']);
+var app = angular.module('myApp', ['angularBootstrapNavTree', 'ngAnimate']);
 
 app.controller('MainCtl', ['$scope', function ($scope) {
     $scope.selectedSibling = null;
@@ -39,6 +39,9 @@ app.controller('MainCtl', ['$scope', function ($scope) {
     ];
 
     $scope.my_handler = function (branch) {
+        if ($scope.branch) {
+            $scope.branch.selected = false;
+        }
         $scope.branch = branch;
         $scope.siblings = angular.copy(gatherSiblings());
         for (var i = 0; i < $scope.siblings.length; i++) {
@@ -84,10 +87,11 @@ app.controller('MainCtl', ['$scope', function ($scope) {
                     var copy = {
                         label: $scope.branch.label,
                         children: $scope.branch.children,
-                        level: $scope.branch.level - 1
+                        level: $scope.branch.level - 1,
+                        selected: true
                     };
                     level.push(copy);
-                    $scope.branch = null;
+                    $scope.my_handler(copy);
                     return false;
                 }
             }
@@ -120,11 +124,14 @@ app.controller('MainCtl', ['$scope', function ($scope) {
         }
         for (var i = 0; i < level.length; i++) {
             if (level[i].uid == id) {
-                level[i].children.push({
+                var guy = {
                     label: data.label,
                     children: data.children,
-                    level: data.level + 1
-                });
+                    level: data.level + 1,
+                    selected: true
+                };
+                level[i].children.push(guy);
+                $scope.my_handler(guy);
                 return true;
             } else {
                 if (inserter(level[i].children, id, data)) {
@@ -140,8 +147,6 @@ app.controller('MainCtl', ['$scope', function ($scope) {
         // poor performance but simple impl
         remover(undefined, $scope.branch.uid);
         inserter(undefined, $scope.selectedSibling.uid, $scope.branch);
-        $scope.selectedSibling = null;
-        $scope.branch = null;
     };
 
     var compare = function (a, b) {
