@@ -1,12 +1,12 @@
 package app
 
-import grails.converters.JSON
 import grails.rest.Resource
 
 @Resource(uri='/ontologies', formats=['json'])
 class Ontology {
     String name
     String data
+    Integer ontologyVersion = 1
 
 
     static mapping = {
