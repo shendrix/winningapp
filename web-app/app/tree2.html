@@ -15,7 +15,7 @@
 <body ng-app="myApp" ng-controller="MainCtl">
 
 <div class="container-fluid">
-    <div class="row" id="header">
+    <div class="row">
         <div class="col-sm-3">
             <label for="sources">Source:</label>
             <select id="sources" ng-model="source" ng-change="load()" ng-options="s.name for s in sources"
