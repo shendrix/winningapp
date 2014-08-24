@@ -36,8 +36,17 @@ class OntologiesController extends RestfulController {
     def getByVersion() {
 
         def o = Ontology.findByNameAndOntologyVersion(params.name, params.version.toInteger())
-        println o
-        render o as JSON
+
+        withFormat {
+            json {
+
+                render o as JSON
+            }
+            xml {
+                render exportService.exportOWL(o)
+            }
+
+        }
     }
 
     def showIt() {
@@ -51,7 +60,7 @@ class OntologiesController extends RestfulController {
                 render o as JSON
             }
             xml {
-                render exportService.exportOWL(o,)
+                render exportService.exportOWL(o)
             }
 
 

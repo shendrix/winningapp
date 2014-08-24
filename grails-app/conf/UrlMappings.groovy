@@ -8,7 +8,7 @@ class UrlMappings {
             }
         }
 
-        "/ontologies/$name/$version"(controller: "ontologies", action: "getByVersion")
+        "/ontologies/$name/$version(.$format)?"(controller: "ontologies", action: "getByVersion")
         "/ontologies/$name(.$format)?"(controller: "ontologies") {
             action = [GET: 'showIt', POST: 'save', PUT: 'update']
         }
