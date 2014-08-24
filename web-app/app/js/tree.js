@@ -9,42 +9,7 @@ app.factory('Ontologies', ['$resource', function ($resource) {
 app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies) {
     $scope.sources = Ontologies.query();
     $scope.selectedSibling = null;
-
-    $scope.data = [
-        {
-            label: 'Animals',
-            children: [
-                {
-                    label: 'Mammals',
-                    children: [
-                        {
-                            label: 'Human'
-                        },
-                        {
-                            label: "Manatee"
-                        }
-                    ]
-                },
-                {
-                    label: 'Insects'
-                },
-                {
-                    label: 'Kangaroo'
-                }
-            ]
-        },
-        {
-            label: 'Fungi',
-            children: [
-                {
-                    label: 'Toadstool'
-                },
-                {
-                    label: '1Up'
-                }
-            ]
-        }
-    ];
+    $scope.data = [];
 
     $scope.save = function () {
         Ontologies.update({id: $scope.source.name}, {
