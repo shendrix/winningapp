@@ -9,34 +9,30 @@
     <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="bower_components/angular-bootstrap-nav-tree/dist/abn_tree.css">
-    <link href='http://fonts.googleapis.com/css?family=Quicksand:300,400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="/app/assets/app.css">
 </head>
 <body ng-app="myApp" ng-controller="MainCtl">
 
 <div class="container-fluid">
-    <div class="row" id="header">
-        <div class="col-sm-3">
+    <div class="row search-tools">
+        <div class="col-sm-3 filter">
             <label for="sources">Source:</label>
             <select id="sources" ng-model="source" ng-change="load()" ng-options="s.name for s in sources"
                     class="form-control"></select>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 filter">
             <label for="versions">Version:</label>
             <select id="versions" class="form-control" ng-options="v for v in versions" ng-model="version"
                     ng-change="versionChange()"></select>
         </div>
-        <div class="col-sm-3">
-            <br/>
+        <div class="col-sm-3 trigger">
             <button class="btn btn-primary" ng-click="save()">Save</button>
         </div>
-        <div class="col-sm-3">
-            <br/>
+        <div class="col-sm-3 trigger">
             <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
         </div>
     </div>
-
-    <hr/>
 
     <div class="row">
         <div class="col-xs-6">
@@ -50,9 +46,12 @@
                             ></abn-tree>
                 </div>
             </div>
+            <div ng-hide="data.length != 0">
+                Select a source from above to load from the backend.
+            </div>
         </div>
         <div class="col-xs-6">
-            <div ng-hide="branch">Please select an item to the left</div>
+            <div ng-hide="branch">Click an item in the tree to edit attributes.</div>
             <div id="selection" class="panel panel-default" ng-show="branch" data-spy="affix" data-offset-top="60"
                  data-offset-bottom="200" style="min-width: 47%;">
                 <div class="panel-heading">
