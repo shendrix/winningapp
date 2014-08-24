@@ -21,8 +21,10 @@ class OntologyLoaderService {
             } else {
                 it.eachLine {
                     def words = it.split("\t")
-                    def top = words[0]
-                    words = words[1..-1]
+
+                    def top = words[1]
+                    words = words[2..-1]
+
                     def first = new Clazz(label: top)
                     words.each { word ->
 
