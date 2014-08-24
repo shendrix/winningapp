@@ -44,7 +44,8 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <div class="panel panel-default">
+            <div class="panel panel-default" data-spy="affix" data-offset-top="60" data-offset-bottom="200"
+                 style="min-width: 47%;">
                 <div class="panel-heading">Selection</div>
                 <div class="panel-body">
                     <div ng-hide="branch">Please select an item to the left</div>
@@ -90,6 +91,7 @@
 {{siblings|json}}</pre>
 
 <script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/js/affix.js"></script>
 <script type="text/javascript" src="js/tree.js"></script>
 <script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
 </body>
