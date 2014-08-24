@@ -5,15 +5,16 @@ import grails.rest.RestfulController
 import grails.transaction.Transactional
 
 class OntologiesController extends RestfulController {
-    static responseFormats = ['json']
+    static responseFormats = ['json', 'xml']
+    def exportService
 
     OntologiesController() {
         super(Ontology)
     }
 
 
-    def index (Integer max) {
-        respond Ontology.list().unique { it.name}.sort { it.name}
+    def index(Integer max) {
+        respond Ontology.list().unique { it.name }.sort { it.name }
     }
 
     @Transactional
@@ -40,9 +41,22 @@ class OntologiesController extends RestfulController {
     }
 
     def showIt() {
+
         def name = params.name
         def o = Ontology.findAllByName(name).sort { -it.ontologyVersion }[0]
-        render o as JSON
+        withFormat {
+            json {
+
+
+                render o as JSON
+            }
+            xml {
+                render exportService.exportOWL(o,)
+            }
+
+
+        }
+
     }
 
 }
