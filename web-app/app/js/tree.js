@@ -1,7 +1,9 @@
 var app = angular.module('myApp', ['angularBootstrapNavTree', 'ngAnimate', 'ngResource']);
 
 app.factory('Ontologies', ['$resource', function ($resource) {
-    return $resource('/app/ontologies/:id', null, {});
+    return $resource('/app/ontologies/:id', null, {
+            update: {method: "PUT", url: '/app/ontologies/:id', params: {id: '@id'}}}
+    );
 }]);
 
 app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies) {
@@ -44,8 +46,16 @@ app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies)
         }
     ];
 
+    $scope.save = function () {
+        Ontologies.update({id: $scope.source.name}, {
+            name: $scope.source.name,
+            data: $scope.data,
+            ontologyVersion: $scope.ontologyVersion
+        });
+    };
+
     $scope.load = function () {
-        $scope.data = Ontologies.get({id: $scope.source.id}, function () {
+        $scope.data = Ontologies.get({id: $scope.source.name}, function () {
             console.log($scope.data);
             $scope.versions = [];
             for (var i = 0; i < $scope.data.ontologyVersion; i++) {
