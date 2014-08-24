@@ -50,7 +50,9 @@ app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies)
         Ontologies.update({id: $scope.source.name}, {
             name: $scope.source.name,
             data: JSON.stringify($scope.data),
-            ontologyVersion: $scope.ontologyVersion
+            ontologyVersion: $scope.version + 1
+        }, function () {
+            $scope.load($scope.version + 2);
         });
     };
 
