@@ -77,6 +77,8 @@
                                     ng-model="selectedSibling" ng-change="moveDown()">
                             </select>
                         </dd>
+                        <dt>Comments</dt>
+                        <dd><textarea ng-model="branch.comments" class="form-control" rows="4"></textarea></dd>
                     </dl>
                     <pre ng-show="debug">{{branch|json}}</pre>
                 </div>
