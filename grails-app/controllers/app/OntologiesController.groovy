@@ -23,7 +23,11 @@ class OntologiesController extends RestfulController {
 
     @Transactional
     def update(Ontology o) {
-        def oo = new Ontology(name: o.name, ontologyVersion: o.ontologyVersion + 1, data: o.data.toString()).save(flush: true, failOnError: true)
+        def oo = new Ontology(
+                name: o.name,
+                ontologyVersion: o.ontologyVersion + 1,
+                data: o.data.toString())
+                .save(flush: true, failOnError: true)
 
         render oo as JSON
     }
