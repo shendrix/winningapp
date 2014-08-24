@@ -16,7 +16,7 @@
     <div class="row">
         <div class="col-sm-3">
             <label for="sources">Source:</label>
-            <select id="sources" ng-model="source" ng-change="load()" ng-options="s for s in sources"
+            <select id="sources" ng-model="source" ng-change="load()" ng-options="s.name for s in sources"
                     class="form-control"></select>
         </div>
         <div class="col-sm-3">
