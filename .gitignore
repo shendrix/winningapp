@@ -4,3 +4,4 @@ target
 *.iml
 .sass-cache
 *gitconfig
+node_modules/
