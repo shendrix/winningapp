@@ -94,7 +94,7 @@ ul.abn-tree {
 			}
 			&:before {
 				content: '>';
-				color: $light;
+				color: $dark;
 				position: absolute;
 				right: 1em;
 			}
@@ -121,5 +121,12 @@ ul.abn-tree {
 dl {
 	dd {
 		margin-bottom: .75em;
+		button.btn.btn-primary {
+			background-color: $orange;
+			border-color: darken($orange, 10%);
+		}
+		.form-control {
+			border: 1px solid darken($background, 25%);
+		}
 	}
 }

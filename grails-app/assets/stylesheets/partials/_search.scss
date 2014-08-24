@@ -39,7 +39,7 @@ $text: darken($orange, 50%);
 		}
 
 		select {
-			border-color: transparent;
+			border: 1px solid darken($orange, 10%);
 		}
 
 		ol label {
