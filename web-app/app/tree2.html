@@ -65,8 +65,7 @@
                         <dd>{{branch.children.length}}</dd>
                         <dt>Move Up</dt>
                         <dd>
-                            <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);"
-                                    ng-disabled="branch.level == 1">
+                            <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);">
                                 <i class="fa fa-arrow-up"></i>
                             </button>
                         </dd>
@@ -76,6 +75,10 @@
                                     ng-disabled="siblings.length == 0"
                                     ng-model="selectedSibling" ng-change="moveDown()">
                             </select>
+                        </dd>
+                        <dt>Relation to Parent</dt>
+                        <dd>
+                            <input type="text" ng-model="branch.relationship" class="form-control">
                         </dd>
                         <dt>Comments</dt>
                         <dd><textarea ng-model="branch.comments" class="form-control" rows="4"></textarea></dd>
