@@ -1,0 +1,60 @@
+$dark: #0A313D;
+$medium: #7F9294;
+$light: #FAFBF3;
+
+$blue: #00B5CD;
+$red: #ED2647;
+$white: #fefefe;
+
+$background: $red;
+$highlight: $blue;
+$text: #212121;
+
+.search-tools {
+	$search-tools-border-color: $white;
+
+	@include clearfix;
+	background: $background;
+	padding: 10px;
+	padding: 1em 0 .5em;
+	margin-bottom: 2em;
+
+	.filter {
+		margin-bottom: 1em;
+
+		label {
+			color: $text;
+			text-transform: uppercase;
+		}
+
+		select {
+			border-color: transparent;
+		}
+
+		ol label {
+			display: inline;
+		}
+
+		.hide-options {
+			margin-bottom: 0;
+
+			ol, button {
+				display: none;
+			}
+		}
+	}
+
+	.trigger {
+
+		button {
+			background-color: $white;
+			border-color: transparent;
+			color: $dark;
+			margin-top: 1.7em;
+			text-transform: uppercase;
+			&:hover {
+				background-color: $blue;
+			}
+		}
+	}
+}

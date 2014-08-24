@@ -15,28 +15,24 @@
 <body ng-app="myApp" ng-controller="MainCtl">
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-sm-3">
+    <div class="row search-tools">
+        <div class="col-sm-3 filter">
             <label for="sources">Source:</label>
             <select id="sources" ng-model="source" ng-change="load()" ng-options="s.name for s in sources"
                     class="form-control"></select>
         </div>
-        <div class="col-sm-3">
+        <div class="col-sm-3 filter">
             <label for="versions">Version:</label>
             <select id="versions" class="form-control" ng-options="v for v in versions" ng-model="version"
                     ng-change="versionChange()"></select>
         </div>
-        <div class="col-sm-3">
-            <br/>
+        <div class="col-sm-3 trigger">
             <button class="btn btn-primary" ng-click="save()">Save</button>
         </div>
-        <div class="col-sm-3">
-            <br/>
+        <div class="col-sm-3 trigger">
             <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
         </div>
     </div>
-
-    <hr/>
 
     <div class="row">
         <div class="col-xs-6">
