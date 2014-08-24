@@ -58,6 +58,7 @@ a {
 #selection {
 	.panel-heading {
 		background: $highlight;
+		label { float: right; }
 	}
 }
 
