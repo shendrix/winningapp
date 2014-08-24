@@ -1,5 +1,12 @@
 /* app css stylesheet */
 
+body {
+	font-family: 'Quicksand', sans-serif;
+	font-size: 16px;
+	line-height: 20px;
+	-webkit-font-smoothing: antialiased;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
