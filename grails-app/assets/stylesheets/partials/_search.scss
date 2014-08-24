@@ -1,12 +1,16 @@
+$olddark: #282827;
+$oldlight: #dcd8cf;
+
 $dark: #0A313D;
 $medium: #7F9294;
 $light: #FAFBF3;
 
 $blue: #00B5CD;
 $red: #ED2647;
+$orange: #e25d33;
 $white: #fefefe;
 
-$background: $red;
+$background: $orange;
 $highlight: $blue;
 $text: #212121;
 
@@ -19,11 +23,20 @@ $text: #212121;
 	padding: 1em 0 .5em;
 	margin-bottom: 2em;
 
+	&:after {
+		background-color: darken($background, 10%);
+		content: '';
+		position: relative;
+		top: .7em;
+		height: 5px;
+		width: 100%;
+	}
+
 	.filter {
 		margin-bottom: 1em;
 
 		label {
-			color: $text;
+			color: $dark;
 			text-transform: uppercase;
 		}
 
@@ -45,15 +58,14 @@ $text: #212121;
 	}
 
 	.trigger {
-
 		button {
-			background-color: $light;
-			border-color: transparent;
-			color: $dark;
+			background-color: $dark;
+			border-color: $dark;
+			color: $light;
 			margin-top: 1.7em;
 			text-transform: uppercase;
 			&:hover {
-				background-color: $blue;
+				background-color: lighten($dark, 10%);
 			}
 		}
 	}

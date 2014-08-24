@@ -1,12 +1,16 @@
 @import 'bourbon/addons/clearfix';
 @import 'partials/search';
 
+$olddark: #282827;
+$oldlight: #dcd8cf;
+
 $dark: #0A313D;
 $medium: #7F9294;
 $light: #FAFBF3;
 
 $blue: #00B5CD;
 $red: #ED2647;
+$orange: #e25d33;
 $white: #fefefe;
 
 $background: $light;
@@ -24,11 +28,11 @@ body {
 }
 
 a {
-	color: $blue;
+	color: $dark;
 	text-decoration: none;
 
 	&:hover, &:focus {
-		color: $red;
+		color: $blue;
 		text-decoration: underline;
 	}
 }
@@ -52,7 +56,7 @@ a {
 }
 
 #categories.panel {
-	background-color: $medium;
+	background-color: lighten($dark, 7%);
 	color: $light;
 	padding: .5em;
 
@@ -83,19 +87,33 @@ ul.abn-tree {
 
 		&:first-child { margin-top: 0; }
 		&.active a {
-			color: $red;
-			&:hover { background-color: $dark; }
-		}
-
-		a {
-			background: $dark;
-			padding: .5em 1em;
-
-			&:hover:before {
+			background-color: $blue;
+			color: $white;
+			&:hover {
+				background-color: $blue;
+				color: $white;
+			}
+			&:before {
 				content: '>';
 				color: $light;
 				position: absolute;
 				right: 1em;
+			}
+		}
+
+		a {
+			background: $white;
+			padding: .5em 1em;
+
+			&:hover {
+				background-color: lighten($medium, 15%);
+				color: $white;
+				&:before {
+					content: '>';
+					color: $light;
+					position: absolute;
+					right: 1em;
+				}
 			}
 		}
 	}
