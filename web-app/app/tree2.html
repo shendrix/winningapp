@@ -22,10 +22,15 @@
                     class="form-control"></select>
         </div>
         <div class="col-sm-3">
-            <label for="versions">Versions</label>
-            <select id="versions" class="form-control"></select>
+            <label for="versions">Version:</label>
+            <select id="versions" class="form-control" ng-options="v for v in versions" ng-model="version"></select>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-3">
+            <br/>
+            <button class="btn btn-primary" ng-click="save()">Save</button>
+        </div>
+        <div class="col-sm-3">
+            <br/>
             <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
         </div>
     </div>
@@ -34,7 +39,7 @@
 
     <div class="row">
         <div class="col-xs-6">
-            <div class="panel panel-default">
+            <div id="categories" class="panel panel-default">
                 <div class="panel-heading">Tree</div>
                 <div class="panel-body">
                     <abn-tree
@@ -54,9 +59,7 @@
                     <div ng-show="branch">
                         <dl class="dl-horizontal">
                             <dt>Label</dt>
-                            <dd>
-                                <input type="text" ng-model="branch.label" class="form-control">
-                            </dd>
+                            <dd>{{branch.label}}</dd>
                             <dt>Level</dt>
                             <dd>{{branch.level}}</dd>
                             <dt>Children</dt>
