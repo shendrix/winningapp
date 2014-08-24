@@ -14,7 +14,16 @@
 
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-sm-3">
+            <label for="sources">Source:</label>
+            <select id="sources" ng-model="source" ng-change="load()" ng-options="s for s in sources"
+                    class="form-control"></select>
+        </div>
+        <div class="col-sm-3">
+            <label for="versions">Versions</label>
+            <select id="versions" class="form-control"></select>
+        </div>
+        <div class="col-sm-6">
             <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
         </div>
     </div>
@@ -80,6 +89,7 @@
 <pre ng-show="debug">Siblings:
 {{siblings|json}}</pre>
 
+<script type="text/javascript" src="bower_components/angular-resource/angular-resource.min.js"></script>
 <script type="text/javascript" src="js/tree.js"></script>
 <script src="bower_components/angular-bootstrap-nav-tree/dist/abn_tree_directive.js"></script>
 </body>

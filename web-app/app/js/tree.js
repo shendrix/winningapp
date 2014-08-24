@@ -1,42 +1,56 @@
-var app = angular.module('myApp', ['angularBootstrapNavTree', 'ngAnimate']);
+var app = angular.module('myApp', ['angularBootstrapNavTree', 'ngAnimate', 'ngResource']);
 
-app.controller('MainCtl', ['$scope', function ($scope) {
+app.factory('Ontologies', ['$resource', function ($resource) {
+    return $resource('/app/ontologies', null, {});
+}]);
+
+app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies) {
+    $scope.sources = ['Sample', 'Article Data'];
+    $scope.source = 'Sample';
     $scope.selectedSibling = null;
-    $scope.data = [
-        {
-            label: 'Animals',
-            children: [
+
+    $scope.load = function () {
+        if ($scope.source == 'Sample') {
+            $scope.data = [
                 {
-                    label: 'Mammals',
+                    label: 'Animals',
                     children: [
                         {
-                            label: 'Human'
+                            label: 'Mammals',
+                            children: [
+                                {
+                                    label: 'Human'
+                                },
+                                {
+                                    label: "Manatee"
+                                }
+                            ]
                         },
                         {
-                            label: "Manatee"
+                            label: 'Insects'
+                        },
+                        {
+                            label: 'Kangaroo'
                         }
                     ]
                 },
                 {
-                    label: 'Insects'
-                },
-                {
-                    label: 'Kangaroo'
+                    label: 'Fungi',
+                    children: [
+                        {
+                            label: 'Toadstool'
+                        },
+                        {
+                            label: '1Up'
+                        }
+                    ]
                 }
-            ]
-        },
-        {
-            label: 'Fungi',
-            children: [
-                {
-                    label: 'Toadstool'
-                },
-                {
-                    label: '1Up'
-                }
-            ]
+            ];
+        } else {
+            $scope.data = Ontologies.query();
         }
-    ];
+    };
+    $scope.load();
 
     $scope.my_handler = function (branch) {
         if ($scope.branch) {
