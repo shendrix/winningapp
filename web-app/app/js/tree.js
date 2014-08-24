@@ -47,6 +47,11 @@ app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies)
     $scope.load = function () {
         $scope.data = Ontologies.get({id: $scope.source.id}, function () {
             console.log($scope.data);
+            $scope.versions = [];
+            for (var i = 0; i < $scope.data.ontologyVersion; i++) {
+                $scope.versions.push(i);
+            }
+            $scope.version = $scope.data.ontologyVersion - 1;
             $scope.data = JSON.parse($scope.data.data);
         });
     };
