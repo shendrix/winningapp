@@ -58,6 +58,12 @@ app.controller('MainCtl', ['$scope', 'Ontologies', function ($scope, Ontologies)
 
     $scope.versionChange = function () {
         $scope.load($scope.version + 1);
+        var temp = Ontologies.get({id: $scope.source.name}, function () {
+            $scope.versions = [];
+            for (var i = 0; i < temp.ontologyVersion; i++) {
+                $scope.versions.push(i);
+            }
+        })
     };
 
     $scope.load = function (version) {
