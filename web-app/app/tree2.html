@@ -27,11 +27,11 @@
                     ng-change="versionChange()"></select>
         </div>
         <div class="col-sm-1 trigger">
-            <button class="btn btn-primary" ng-click="save()">Save</button>
+            <button class="btn btn-primary" ng-click="save()" ng-disabled="!source">Save</button>
         </div>
         <div class="col-sm-1 trigger">
             <a href="/app/ontologies/{{source.name}}/{{version}}.xml" download="{{source.name}}.{{version}}.xml">
-                <button class="btn btn-primary">OWL</button>
+                <button class="btn btn-primary" ng-disabled="!source">OWL</button>
             </a>
         </div>
         <div class="col-sm-4 trigger">
