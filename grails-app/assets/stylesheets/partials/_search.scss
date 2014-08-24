@@ -1,18 +1,16 @@
-$olddark: #282827;
-$oldlight: #dcd8cf;
-
-$dark: #0A313D;
-$medium: #7F9294;
-$light: #FAFBF3;
-
-$blue: #00B5CD;
+$blue: #69d2e7;
+$lightblue: #a7dbdb;
 $red: #ED2647;
-$orange: #e25d33;
+$orange: #fa6900;
 $white: #fefefe;
+
+$dark: darken($orange, 35%);
+$medium: #7F9294;
+$light: #e0e4cc;
 
 $background: $orange;
 $highlight: $blue;
-$text: #212121;
+$text: darken($orange, 50%);
 
 .search-tools {
 	$search-tools-border-color: $white;
@@ -59,13 +57,13 @@ $text: #212121;
 
 	.trigger {
 		button {
-			background-color: $dark;
-			border-color: $dark;
-			color: $light;
+			background-color: $light;
+			border: 1px solid darken($orange, 10%);
+			color: $text;
 			margin-top: 1.7em;
 			text-transform: uppercase;
 			&:hover {
-				background-color: lighten($dark, 10%);
+				background-color: $lightblue;
 			}
 		}
 	}

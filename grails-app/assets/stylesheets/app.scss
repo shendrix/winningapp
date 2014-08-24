@@ -1,21 +1,19 @@
 @import 'bourbon/addons/clearfix';
 @import 'partials/search';
 
-$olddark: #282827;
-$oldlight: #dcd8cf;
-
-$dark: #0A313D;
-$medium: #7F9294;
-$light: #FAFBF3;
-
-$blue: #00B5CD;
+$blue: #69d2e7;
+$lightblue: #a7dbdb;
 $red: #ED2647;
-$orange: #e25d33;
+$orange: #fa6900;
 $white: #fefefe;
 
-$background: $light;
+$dark: darken($orange, 35%);
+$medium: #7F9294;
+$light: #e0e4cc;
+
+$background: lighten($light, 5%);
 $highlight: $blue;
-$text: #212121;
+$text: darken($orange, 50%);
 
 body {
 	background: $background;
@@ -28,7 +26,7 @@ body {
 }
 
 a {
-	color: $dark;
+	color: $text;
 	text-decoration: none;
 
 	&:hover, &:focus {
@@ -44,7 +42,7 @@ a {
 
 	.panel-heading {
 		border-radius: 4px;
-		border: none;
+		border-color: transparent;
 		color: $light;
 		font-weight: 700;
 		margin-bottom: .5em;
@@ -56,7 +54,7 @@ a {
 }
 
 #categories.panel {
-	background-color: lighten($dark, 7%);
+	background-color: $dark;
 	color: $light;
 	padding: .5em;
 
@@ -74,7 +72,8 @@ a {
 #selection {
 	.panel-heading {
 		background: $highlight;
-		color: $white;
+		border: 1px solid darken($blue, 10%);
+		color: $dark;
 		label { float: right; }
 	}
 }
@@ -88,10 +87,10 @@ ul.abn-tree {
 		&:first-child { margin-top: 0; }
 		&.active a {
 			background-color: $blue;
-			color: $white;
+			color: $text;
 			&:hover {
 				background-color: $blue;
-				color: $white;
+				color: $dark;
 			}
 			&:before {
 				content: '>';
@@ -106,11 +105,11 @@ ul.abn-tree {
 			padding: .5em 1em;
 
 			&:hover {
-				background-color: lighten($medium, 15%);
-				color: $white;
+				background-color: $lightblue;
+				color: $text;
 				&:before {
 					content: '>';
-					color: $light;
+					color: $text;
 					position: absolute;
 					right: 1em;
 				}
