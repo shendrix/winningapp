@@ -11,9 +11,8 @@ class OntologyLoaderService {
         def dir = grailsApplication.config.app.sourceDataDir
         println("Data Dir ${dir}")
 
-        def list = []
-
         new File(dir).listFiles().each {
+            def list = []
             def name = it.name[0..-5]
             Ontology o = Ontology.findByName(name)
 
