@@ -1,14 +1,18 @@
-$dark: #282827;
-$light: #dcd8cf;
-$orange: #e25d33;
+$dark: #0A313D;
+$medium: #7F9294;
+$light: #FAFBF3;
+
+$blue: #00B5CD;
+$red: #ED2647;
 $white: #fefefe;
 
 $background: $light;
-$highlight: $orange;
+$highlight: $blue;
+$text: #212121;
 
 body {
 	background: $background;
-	color: $dark;
+	color: $text;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 14px;
 	font-weight: 400;
@@ -17,11 +21,11 @@ body {
 }
 
 a {
-	color: $dark;
+	color: $blue;
 	text-decoration: none;
 
 	&:hover, &:focus {
-		color: $highlight;
+		color: $red;
 		text-decoration: underline;
 	}
 }
@@ -32,11 +36,10 @@ a {
 	box-shadow: none;
 
 	.panel-heading {
-		background-color: $dark;
 		border-radius: 4px;
 		border: none;
-		color: $white;
-		font: { size: 14px; weight: bold; }
+		color: $light;
+		font-weight: 700;
 		margin-bottom: .5em;
 		text-transform: uppercase;
 	}
@@ -46,10 +49,15 @@ a {
 }
 
 #categories.panel {
-	background-color: $dark;
+	background-color: $medium;
+	color: $light;
 	padding: .5em;
 
-	.panel-heading { padding: .25em; }
+	.panel-heading {
+		background: transparent;
+		color: $light;
+		padding: .25em;
+	}
 	.panel-body {
 		background-color: transparent;
 		padding: 0;
@@ -59,6 +67,7 @@ a {
 #selection {
 	.panel-heading {
 		background: $highlight;
+		color: $white;
 		label { float: right; }
 	}
 }
@@ -71,22 +80,21 @@ ul.abn-tree {
 
 		&:first-child { margin-top: 0; }
 		&.active a {
-			color: $highlight;
-			font-weight: bold;
+			color: $red;
+			&:hover { background-color: $dark; }
 		}
 
 		a {
-			background: $white;
+			background: $dark;
 			padding: .5em 1em;
 
 			&:hover {
-				background: $highlight;
-				color: $dark;
 			}
 		}
 
 		a:before {
 			content: '>';
+			color: $light;
 			position: absolute;
 			right: 1em;
 		}
