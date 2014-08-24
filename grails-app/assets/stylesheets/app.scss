@@ -7,87 +7,106 @@ $background: $light;
 $highlight: $orange;
 
 body {
-	background: $background;
-	color: $dark;
-	font-family: 'Quicksand', sans-serif;
-	font-size: 16px;
-	line-height: 20px;
-	-webkit-font-smoothing: antialiased;
+  background: $background;
+  color: $dark;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
-	color: $dark;
-	text-decoration: none;
+  color: $dark;
+  text-decoration: none;
 
-	&:hover, &:focus {
-		color: $highlight;
-		text-decoration: underline;
-	}
+  &:hover, &:focus {
+    color: $highlight;
+    text-decoration: underline;
+  }
 }
 
 .panel {
-	background: none;
-	border: none;
-	box-shadow: none;
+  background: none;
+  border: none;
+  box-shadow: none;
 
-	.panel-heading {
-		background-color: $dark;
-		border-radius: 4px;
-		border: none;
-		color: $white;
-		font: { size: 14px; weight: bold; }
-		margin-bottom: .5em;
-		text-transform: uppercase;
-	}
-	.panel-body {
-		border-radius: 4px;
-	}
+  .panel-heading {
+    background-color: $dark;
+    border-radius: 4px;
+    border: none;
+    color: $white;
+    font: {
+      size: 14px;
+      weight: bold;
+    }
+    margin-bottom: .5em;
+    text-transform: uppercase;
+  }
+  .panel-body {
+    border-radius: 4px;
+  }
 }
 
 #categories.panel {
-	background-color: $dark;
-	padding: .5em;
+  background-color: $dark;
+  padding: .5em;
 
-	.panel-heading { padding: .25em; }
-	.panel-body {
-		background-color: transparent;
-		padding: 0;
-	}
+  .panel-heading {
+    padding: .25em;
+  }
+  .panel-body {
+    background-color: transparent;
+    padding: 0;
+  }
 }
 
 #selection {
-	.panel-heading {
-		background: $highlight;
-		label { float: right; }
-	}
+  .panel-heading {
+    background: $highlight;
+    label {
+      float: right;
+    }
+  }
 }
 
 ul.abn-tree {
-	border-radius: 4px;
+  border-radius: 4px;
 
-	li.abn-tree-row {
-		margin-top: .5em;
+  li.abn-tree-row {
+    margin-top: .5em;
 
-		&:first-child { margin-top: 0; }
-		&.active a {
-			color: $highlight;
-			font-weight: bold;
-		}
+    &:first-child {
+      margin-top: 0;
+    }
+    &.active a {
+      color: $highlight;
+      font-weight: bold;
+    }
 
-		a {
-			background: $white;
-			padding: .5em 1em;
+    a {
+      background: $white;
+      padding: .5em 1em;
 
-			&:hover {
-				background: $highlight;
-				color: $dark;
-			}
-		}
+      &:hover {
+        background: $highlight;
+        color: $dark;
+      }
+    }
 
-		a:before {
-			content: '>';
-			position: absolute;
-			right: 1em;
-		}
-	}
+    a:before {
+      content: '>';
+      position: absolute;
+      right: 1em;
+    }
+  }
+}
+
+#header {
+  background: $dark;
+  padding-top: 10px;
+  padding-bottom: 25px;
+}
+
+#header label {
+  color: white;
 }
