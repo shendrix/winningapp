@@ -12,6 +12,10 @@ class OntologiesController extends RestfulController {
     }
 
 
+    def index (Integer max) {
+        respond Ontology.list().unique { it.name}.sort { it.name}
+    }
+
     @Transactional
     def save(Ontology o) {
         update(o)
