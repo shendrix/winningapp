@@ -26,10 +26,15 @@
             <select id="versions" class="form-control" ng-options="v for v in versions" ng-model="version"
                     ng-change="versionChange()"></select>
         </div>
-        <div class="col-sm-3 trigger">
+        <div class="col-sm-1 trigger">
             <button class="btn btn-primary" ng-click="save()">Save</button>
         </div>
-        <div class="col-sm-3 trigger">
+        <div class="col-sm-1 trigger">
+            <a href="/app/ontologies/{{source.name}}/{{version}}.xml" download="{{source.name}}.{{version}}.xml">
+                <button class="btn btn-primary">OWL</button>
+            </a>
+        </div>
+        <div class="col-sm-4 trigger">
             <button class="btn btn-primary pull-right" ng-click="debug=!debug">Debug is {{debug?"On":"Off"}}</button>
         </div>
     </div>
