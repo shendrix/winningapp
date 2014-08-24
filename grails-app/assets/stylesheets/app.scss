@@ -55,6 +55,12 @@ a {
 	}
 }
 
+#selection {
+	.panel-heading {
+		background: $highlight;
+	}
+}
+
 ul.abn-tree {
 	border-radius: 4px;
 

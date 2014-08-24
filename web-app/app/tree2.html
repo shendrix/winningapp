@@ -52,36 +52,31 @@
             </div>
         </div>
         <div class="col-xs-6">
-            <div class="panel panel-default" data-spy="affix" data-offset-top="60" data-offset-bottom="200"
-                 style="min-width: 47%;">
-                <div class="panel-heading">Selection</div>
+            <div ng-hide="branch">Please select an item to the left</div>
+            <div id="selection" class="panel panel-default" ng-show="branch" data-spy="affix" data-offset-top="60" data-offset-bottom="200" style="min-width: 47%;">
+                <div class="panel-heading">{{branch.label}}</div>
                 <div class="panel-body">
-                    <div ng-hide="branch">Please select an item to the left</div>
-                    <div ng-show="branch">
-                        <dl class="dl-horizontal">
-                            <dt>Label</dt>
-                            <dd>{{branch.label}}</dd>
-                            <dt>Level</dt>
-                            <dd>{{branch.level}}</dd>
-                            <dt>Children</dt>
-                            <dd>{{branch.children.length}}</dd>
-                            <dt>Move Up</dt>
-                            <dd>
-                                <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);"
-                                        ng-disabled="branch.level == 1">
-                                    <i class="fa fa-arrow-up"></i>
-                                </button>
-                            </dd>
-                            <dt>Move Down</dt>
-                            <dd>
-                                <select class="form-control" ng-options="s.label for s in siblings"
-                                        ng-disabled="siblings.length == 0"
-                                        ng-model="selectedSibling" ng-change="moveDown()">
-                                </select>
-                            </dd>
-                        </dl>
-                        <pre ng-show="debug">{{branch|json}}</pre>
-                    </div>
+                    <dl class="dl-horizontal">
+                        <dt>Level</dt>
+                        <dd>{{branch.level}}</dd>
+                        <dt>Children</dt>
+                        <dd>{{branch.children.length}}</dd>
+                        <dt>Move Up</dt>
+                        <dd>
+                            <button class="btn btn-primary btn-xs" ng-click="moveUp(undefined);"
+                                    ng-disabled="branch.level == 1">
+                                <i class="fa fa-arrow-up"></i>
+                            </button>
+                        </dd>
+                        <dt>Move Down</dt>
+                        <dd>
+                            <select class="form-control" ng-options="s.label for s in siblings"
+                                    ng-disabled="siblings.length == 0"
+                                    ng-model="selectedSibling" ng-change="moveDown()">
+                            </select>
+                        </dd>
+                    </dl>
+                    <pre ng-show="debug">{{branch|json}}</pre>
                 </div>
             </div>
         </div>
