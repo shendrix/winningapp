@@ -24,4 +24,17 @@ class OntologiesController extends RestfulController {
         render oo as JSON
     }
 
+    def getByVersion() {
+
+        def o = Ontology.findByNameAndOntologyVersion(params.name, params.version.toInteger())
+        println o
+        render o as JSON
+    }
+
+    def showIt() {
+        def name = params.name
+        def o = Ontology.findAllByName(name).sort { -it.ontologyVersion }[0]
+        render o as JSON
+    }
+
 }

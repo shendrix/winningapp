@@ -2,7 +2,7 @@ package app
 
 import grails.rest.Resource
 
-@Resource(uri='/ontologies', formats=['json'])
+@Resource(formats=['json'])
 class Ontology {
     String name
     String data
